@@ -1,0 +1,18 @@
+#head1 {
+    font-size: 40px;
+    font-family: JasmineUPC;
+    color: purple;
+    text-align: center;
+}
+
+.name {
+    text-align: center;
+    font-family: JasmineUPC;
+    font-size: 22px;
+}
+
+.Date {}
+
+.Income {}
+
+.Consumption {}
