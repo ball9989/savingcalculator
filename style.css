@@ -1,17 +1,30 @@
 #head1 {
-    font-size: 40px;
+    font-size: 80px;
     font-family: JasmineUPC;
     color: purple;
     text-align: center;
 }
 
+#ok {
+    font-size: 30px;
+    font-family: JasmineUPC;
+    width: 80px;
+    height: 40px;
+}
+
+#history {
+    font-size: 30px;
+    font-family: JasmineUPC;
+    width: 100px;
+    height: 40px;
+}
+
 .name {
     text-align: center;
     font-family: JasmineUPC;
-    font-size: 22px;
+    font-size: 35px;
+    width: 20%;
 }
-
-.Date {}
 
 .Income {}
 
