@@ -11,7 +11,7 @@
                     <div class="form-row">
                         <div class="col">
                             <label for="hello">กรอก ID:</label>
-                            <input type="text" id="hello" v-model="username" class="form-control" placeholder="กรอก ID อะไรก็ได้">
+                            <input type="text" id="hello" v-model="username" class="form-control" placeholder="กรอก Username หากไม่มีก็ตั้งได้ทันที">
                             <button class="btn btn-success btn-block btn-lg mt-2" @click="$router.push({path: 'calculator/' + username})">เข้าสู่ระบบ</button>
                         </div>
                     </div>
