@@ -7,9 +7,14 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/calculator',
-      name: 'Saving Calculator',
+      path: '/calculator/:username',
+      name: 'SavingCalculator',
       component: () => import('@/components/savingcalculator')
+    },
+    {
+      path: '/calculator',
+      name: 'SavingCalculatorLogin',
+      component: () => import('@/components/calculatorLogin')
     }
   ]
 })

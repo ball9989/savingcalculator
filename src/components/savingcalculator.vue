@@ -4,7 +4,7 @@
             <div class="row text-center">
                 <div class="col-12">
                     <h1>
-                        โปรดกรอกข้อมูล
+                        โปรดกรอกข้อมูล #{{ username }}
                     </h1>
                 </div>
             </div>
@@ -30,6 +30,7 @@
                 <div class="col-12 text-center">
                     <button class="btn btn-success btn-lg" @click="sendForm()">ส่ง</button>
                     <button class="btn btn-primary btn-lg">แสดงรายการ</button>
+                    <button class="btn btn-danger btn-lg" @click="$router.push({name: 'SavingCalculatorLogin'})">ออกจากระบบ</button>
                 </div>
             </div>
         </div>
@@ -44,7 +45,8 @@ export default {
                 date: '',
                 income: 0,
                 expense: 0
-            }
+            },
+            username: this.$route.params.username
         }
     },
     methods: {
