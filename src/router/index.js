@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import SavingCalculator from '@/components/SavingCalculator'
+import calculatorLogin from '@/components/calculatorLogin'
+import redirect from '@/components/redirect'
 
 Vue.use(Router)
 
@@ -9,12 +12,18 @@ export default new Router({
     {
       path: '/calculator/:username',
       name: 'SavingCalculator',
-      component: () => import('@/components/savingcalculator')
+      component: SavingCalculator
     },
     {
       path: '/calculator',
       name: 'SavingCalculatorLogin',
-      component: () => import('@/components/calculatorLogin')
+      component: calculatorLogin
+    },
+    {
+      path: '*',
+      name: '404', 
+      component: redirect
     }
   ]
 })
+
