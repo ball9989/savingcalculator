@@ -76,7 +76,11 @@
 </template>
 
 <script>
+import {firestore} from 'firebase'
 export default {
+  mounted () {
+        this.getData ()
+    },
   data() {
     return {
       form: {
@@ -89,9 +93,43 @@ export default {
   },
   methods: {
     sendForm() {
-      // calculate something
-      // send to firebase
-    }
+      var timestamp = this.getTimeStamp();
+      this.form.income = parseInt(this.form.income);
+      this.form.expense = parseInt(this.form.expense);
+      firestore()
+        .collection("transactions")
+        .add({
+          owner: this.username,
+          timeStamp: timestamp,
+          tranData: this.form,
+          balance: this.form.income - this.form.expense
+        })
+        .then(data => {
+          this.getData();
+        });
+    },
+    getData () {
+            firestore()
+            .collection('transactions')
+            .where('owner', '==', this.username)
+            .orderBy('tranData.date', 'asc')
+            .orderBy('timeStamp', 'asc')
+            .onSnapshot(snapshot => {
+                // console.log(snapshot)
+                var newList = []
+                this.incomeSum = 0
+                this.expenseSum = 0
+                this.totalBalance = 0
+                snapshot.forEach(doc => {
+                    newList.push({id: doc.id, data: doc.data()})
+                    // console.log(doc.data())
+                    this.incomeSum += parseInt(doc.data().tranData.income)
+                    this.expenseSum += parseInt(doc.data().tranData.expense)
+                    this.totalBalance += parseInt(doc.data().balance)
+                });
+                this.transactionList = newList
+            })
+        },
   }
 };
 </script>
