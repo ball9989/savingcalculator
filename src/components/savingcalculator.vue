@@ -82,6 +82,7 @@
               <div class="col-2">{{row.data.tranData.income}} บาท</div>
               <div class="col-2">{{row.data.tranData.expense}} บาท</div>
               <div class="col-3">{{row.data.balance}} บาท</div>
+              <div class="col-2"><button type="button"class="btn btn-danger btn-sm" @click="removeRow(row.id)">ลบแถว</button></div>
             </div>
           </div>
         </div>
