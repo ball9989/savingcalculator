@@ -88,6 +88,9 @@
             </div>
           </div>
         </div>
+        <div v-else class="row pb-2 pt-2 border-dark bg-light text-center">
+          <div class="col-12">ไม่มีรายการให้แสดง</div>
+        </div>
       </form>
     </div>
   </div>
