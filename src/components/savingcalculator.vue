@@ -51,7 +51,7 @@
         <div class="row mt-5">
           <div class="col-12 text-center">
             <button type="submit" class="btn btn-success btn-lg">ส่ง</button>
-            <button type="button" class="btn btn-primary btn-lg">ล้างรายการ</button>
+            <button type="button" class="btn btn-primary btn-lg" @click="removeAllRows()">ล้างรายการ</button>
             <button
               class="btn btn-danger btn-lg"
               @click="$router.push({name: 'SavingCalculatorLogin'})"
@@ -82,7 +82,9 @@
               <div class="col-2">{{row.data.tranData.income}} บาท</div>
               <div class="col-2">{{row.data.tranData.expense}} บาท</div>
               <div class="col-3">{{row.data.balance}} บาท</div>
-              <div class="col-2"><button type="button"class="btn btn-danger btn-sm" @click="removeRow(row.id)">ลบแถว</button></div>
+              <div class="col-2">
+                <button type="button" class="btn btn-danger btn-sm" @click="removeRow(row.id)">ลบแถว</button>
+              </div>
             </div>
           </div>
         </div>
@@ -151,11 +153,21 @@ export default {
       return new Date().getTime();
     },
     removeRow(e) {
-            firestore()
-            .collection('transactions')
-            .doc(e)
-            .delete()
-        },
+      firestore()
+        .collection("transactions")
+        .doc(e)
+        .delete();
+    },
+    removeAllRows() {
+      firestore()
+        .collection("transactions")
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            if (doc.data().owner == this.username) this.removeRow(doc.id);
+          });
+        });
+    }
   }
 };
 </script>
