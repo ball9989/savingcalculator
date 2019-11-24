@@ -149,7 +149,13 @@ export default {
     },
     getTimeStamp() {
       return new Date().getTime();
-    }
+    },
+    removeRow(e) {
+            firestore()
+            .collection('transactions')
+            .doc(e)
+            .delete()
+        },
   }
 };
 </script>
