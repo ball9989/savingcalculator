@@ -51,7 +51,7 @@
         <div class="row mt-5">
           <div class="col-12 text-center">
             <button type="submit" class="btn btn-success btn-lg">ส่ง</button>
-            <button class="btn btn-primary btn-lg">แสดงรายการ</button>
+            <button type="button" class="btn btn-primary btn-lg">ล้างรายการ</button>
             <button
               class="btn btn-danger btn-lg"
               @click="$router.push({name: 'SavingCalculatorLogin'})"
