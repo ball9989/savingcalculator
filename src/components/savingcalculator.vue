@@ -58,6 +58,20 @@
             >ออกจากระบบ</button>
           </div>
         </div>
+        <div class="row bg-dark text-center mt-5">
+                <div class="col-3">
+                    <label for="dato">รายได้รวม</label>
+                </div>
+                <div class="col-3">
+                    <label for="dato">รายจ่ายรวม</label>
+                </div>
+                <div class="col-3">
+                    <label for="dato">คงเหลือทั้งหมด</label>
+                </div>
+                <div class="col-3">
+                    <label for="dato">เงินเก็บเฉลี่ยต่อวัน</label>
+                </div>
+            </div>
         <div class="row bg-dark text-center">
           <div class="col-3">
             <label for="dato">วันที่</label>
