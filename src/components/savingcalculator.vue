@@ -71,6 +71,20 @@
                 <div class="col-3">
                     <label for="dato">เงินเก็บเฉลี่ยต่อวัน</label>
                 </div>
+          </div>
+          <div class="row bg-light text-center pt-2 pb-2 mb-5">
+                <div class="col-3">
+                    {{incomeSum}} บาท   
+                </div>
+                <div class="col-3">
+                    {{expenseSum}} บาท  
+                </div>
+                <div class="col-3">
+                    {{totalBalance}} บาท    
+                </div>
+                <div class="col-3">
+                    {{balanceAvg}} บาท
+                </div>
             </div>
         <div class="row bg-dark text-center">
           <div class="col-3">
