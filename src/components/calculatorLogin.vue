@@ -1,9 +1,16 @@
 <template>
-    <div>
+    <div>    
         <div class="container">
+            <div class="row mt-5 mb-5"></div>
+                        <div class="row mt-5 mb-5"></div>
+                                    <div class="row mt-5 mb-5"></div>
+                                                <div class="row mt-5 mb-5"></div>
+                                                            <div class="row mt-5 mb-5"></div>
+                                                                        <div class="row mt-5 mb-5"></div>
+           
             <div class="row text-center mt-5">
                 <div class="col-12">
-                    <h1>เข้าสู่ระบบ</h1>
+                    <h1>เข้าสู่ระบบ</h1> 
                 </div>
             </div>
             <div class="row text-center">
