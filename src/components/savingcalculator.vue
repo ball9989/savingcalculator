@@ -23,8 +23,40 @@
                             <input type="number" id="raijai" class="form-control" v-model="form.expense" placeholder="รายจ่าย" required>
                         </div>
                     </div>
+          </div>
+          <div class="col-12 mt-5">
+                   <h1 class="text-center">
+                       คำนวณเป้าหมาย
+                   </h1>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="goalla">เป้าหมาย (บาท) :</label>
+                            <input type="number" id="goalla" class="form-control" v-model="goal" placeholder="เป้าหมายที่ต้องการ">
+                        </div>
+                    </div>
+                    <div v-if="this.goal == 0">
+                        <h1 class="text-center mt-3 mb-2">
+                        กรอกเป้าหมาย เพื่อคำนวณ !
+                        </h1>
+                    </div>
+                    <div v-else-if="this.totalBalance <= 0">
+                        <h1 class="text-center mt-3 mb-2">
+                            พยายามลดรายจ่ายนะ คุณไม่มีเงินเก็บเลย ;(
+                        </h1>
+                    </div>
+                    <div v-else-if="this.daysLeft >= 1">
+                        <h1 class="text-center mt-3 mb-2">
+                        ประมาณ {{daysLeft}} วันเงินจะพอ สู้เขานะ !
+                        </h1>
+                    </div>
+                    <div v-else>
+                        <h1 class="text-center mt-3 mb-2">
+                        เงินพอแล้ว.. ซื้อของได้เลยย !
+                        </h1>
+                    </div>
                 </div>
         </div>
+        
         <div class="row mt-5">
           <div class="col-12 text-center">
             <button class="btn btn-success btn-lg" type="submit">ส่ง</button>
