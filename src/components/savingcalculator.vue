@@ -2,7 +2,7 @@
     <div>
         <div class="container mt-5 mb-5">
             <div class="row text-center">
-                <div class="col-12">
+                <div class="col col-sm-12 col-md-12">
                     <h1>
                         คำนวณรายรับรายจ่าย #{{this.username}}
                     </h1>
@@ -10,127 +10,127 @@
             </div>
             <form v-on:submit.prevent="sendForm()">
             <div class="row mt-5">
-                <div class="col-12">
+                <div class="col col-sm-12 col-md-12">
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col-4 col-4 col-md-4 col-sm-4">
                             <label for="dato">วันที่ :</label>
                             <input type="date" id="dato" class="form-control" v-model="form.date" placeholder="วันที่" required>
                         </div>
-                        <div class="col">
+                        <div class="col-4 col-4 col-md-4 col-sm-4">
                             <label for="incoma">รายรับ (บาท) :</label>
                             <input type="number" min="0" max="1000000" id="incoma" class="form-control" v-model="form.income" placeholder="รายรับ" required>
                         </div>
-                        <div class="col">
+                        <div class="col-4 col-4 col-md-4 col-sm-4">
                             <label for="raijai">รายจ่าย (บาท) :</label>
                             <input type="number" id="raijai" class="form-control" v-model="form.expense" placeholder="รายจ่าย" required>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-5">
+                <div class="col col-sm-12 col-md-12 mt-5">
                    <h1 class="text-center">
                        คำนวณจำนวนวันที่จะซื้อของได้
                    </h1>
                     <div class="form-row">
-                        <div class="col">
+                        <div class="col col-md-12 col-sm-12">
                             <label for="goalla">ราคาของที่เราอยากได้ (บาท) :</label>
                             <input type="number" id="goalla" class="form-control" v-model="goal" placeholder="เป้าหมายที่ต้องการ">
                         </div>
                     </div>
                     <div v-if="this.goal == 0">
-                        <h1 class="text-center mt-3 mb-2">
+                        <h2 class="text-center mt-3 mb-2">
                         กรอกราคา เพื่อคำนวณ !
-                        </h1>
+                        </h2>
                     </div>
                     <div v-else-if="this.totalBalance <= 0">
-                        <h1 class="text-center mt-3 mb-2">
+                        <h2 class="text-center mt-3 mb-2">
                             พยายามลดรายจ่ายนะ คุณไม่มีเงินเก็บเลย ;(
-                        </h1>
+                        </h2>
                     </div>
                     <div v-else-if="this.daysLeft >= 1">
-                        <h1 class="text-center mt-3 mb-2">
+                        <h2 class="text-center mt-3 mb-2">
                         ประมาณ {{daysLeft}} วันเงินจะพอ สู้เขานะ !
-                        </h1>
+                        </h2>
                     </div>
                     <div v-else>
-                        <h1 class="text-center mt-3 mb-2">
+                        <h2 class="text-center mt-3 mb-2">
                         เงินพอแล้ว.. ซื้อของได้เลยย !
-                        </h1>
+                        </h2>
                     </div>
                 </div>
             </div>
             <div class="row mt-5 mb-5">
-                <div class="col-12 text-center">
+                <div class="col col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-success btn-lg">ส่ง</button>
                     <button type="button" class="btn btn-primary btn-lg" @click="removeAllRows()">ล้างรายการ</button>
                     <button type="button" class="btn btn-danger btn-lg" @click="$router.push({name: 'SavingCalculatorLogin'})">ออกจากระบบ</button>
                 </div>
             </div>
             <div class="row bg-dark text-center mt-5">
-                <div class="col-3">
+                <div class="col-3 col-sm-3">
                     <label for="dato">รายได้รวม</label>
                 </div>
-                <div class="col-3">
+                <div class="col-3 col-sm-3">
                     <label for="dato">รายจ่ายรวม</label>
                 </div>
-                <div class="col-3">
+                <div class="col-3 col-sm-3">
                     <label for="dato">คงเหลือทั้งหมด</label>
                 </div>
-                <div class="col-3">
+                <div class="col-3 col-sm-3">
                     <label for="dato">เงินเก็บเฉลี่ยต่อวัน</label>
                 </div>
             </div>
             <div v-if="this.transactionList.length">
                 <div class="row bg-light text-center pt-2 pb-2 mb-5">
-                    <div class="col-3">
+                    <div class="col-3 col-sm-3">
                         {{incomeSum}} บาท   
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 col-sm-3">
                         {{expenseSum}} บาท  
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 col-sm-3">
                         {{totalBalance}} บาท    
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 col-sm-3">
                         {{balanceAvg}} บาท
                     </div>
                 </div>
             </div>
             <div v-else class="row pb-2 pt-2 border-dark bg-light text-center mb-5"> 
-                <div class="col-12">
+                <div class="col col-md-12 col-sm-12">
                     ไม่มีรายการให้แสดง
                 </div>
             </div>
 
             <div class="row bg-dark text-center">
-                <div class="col-3">
+                <div class="col-3 col-md-3 col-sm-3">
                     <label for="dato">วันที่ </label>
                 </div>
-                <div class="col-2">
+                <div class="col-2 col-md-2 col-sm-2">
                     <label for="dato">รายรับ </label>
                 </div>
-                <div class="col-2">
+                <div class="col-2 col-md-2 col-sm-2">
                     <label for="dato">รายจ่าย </label>
                 </div>
-                <div class="col-3">
+                <div class="col-3 col-md-3 col-sm-3">
                     <label for="dato">คงเหลือ</label>
                 </div>
-                <div class="col-2">
+                <div class="col-2 col-md-2 col-sm-2">
                     <label for="dato">ลบ</label>
                 </div>
             </div>
             <div v-if="this.transactionList.length">
                 <div v-for="row in transactionList">
                     <div class="row pb-2 pt-2 border-bottom border-dark bg-light" style="text-align:center">
-                        <div class="col-3">{{row.data.tranData.date}}</div>
-                        <div class="col-2">{{row.data.tranData.income}} บาท</div>
-                        <div class="col-2">{{row.data.tranData.expense}} บาท</div>
-                        <div class="col-3">{{row.data.balance}} บาท</div>
-                        <div class="col-2"><button type="button"class="btn btn-danger btn-sm" @click="removeRow(row.id)">ลบแถว</button></div>
+                        <div class="col-3 col-md-3 col-sm-3">{{row.data.tranData.date}}</div>
+                        <div class="col-2 col-md-2 col-sm-2">{{row.data.tranData.income}} บาท</div>
+                        <div class="col-2 col-md-2 col-sm-2">{{row.data.tranData.expense}} บาท</div>
+                        <div class="col-3 col-md-3 col-sm-3">{{row.data.balance}} บาท</div>
+                        <div class="col-2 col-md-2 col-sm-2"><button type="button" class="btn btn-danger btn-sm" @click="removeRow(row.id)">ลบแถว</button></div>
                     </div>
                 </div>
             </div>
             <div v-else class="row pb-2 pt-2 border-dark bg-light text-center"> 
-                <div class="col-12">
+                <div class="col col-sm-12 col-md-12">
                     ไม่มีรายการให้แสดง
                 </div>
             </div>
@@ -239,7 +239,7 @@ export default {
 
 <style>
 
-h1, label {
+h1, h2, label {
     color: white;
     text-shadow: 3px 3px 3px black;
 }
