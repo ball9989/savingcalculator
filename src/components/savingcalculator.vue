@@ -26,6 +26,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row mt-5">
                 <div class="col col-sm-12 col-md-12 mt-5">
                    <h1 class="text-center">
                        คำนวณจำนวนวันที่จะซื้อของได้
