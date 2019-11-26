@@ -1,6 +1,9 @@
 # saving-calculator
 
-> PSIT project
+> PSIT project 
+
+  Web hosting on firebase and using firestore for database
+  https://savingcalculator-3f83a.web.app/
 
 ## Build Setup
 
