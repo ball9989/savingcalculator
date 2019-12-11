@@ -8,7 +8,9 @@
                     </h1>
                 </div>
             </div>
-            <form v-on:submit.prevent="sendForm()">
+
+            <form v-on:submit.prevent="sendForm()"> <!-- เรียกใช้ method sendForm()-->
+            <!-- ฟอร์มของวันที่ รายรับ และรายจ่าย -->
             <div class="row mt-5">
                 <div class="col col-sm-12 col-md-12">
                     <div class="form-row">
@@ -27,6 +29,9 @@
                     </div>
                 </div>
             </div>
+
+
+            <!-- ส่วนของฟีเจอร์ คำนวณจำนวนวันที่จะซื้อของได้ -->
             <div class="row mt-5">
                 <div class="col col-sm-12 col-md-12 mt-5">
                    <h1 class="text-center">
@@ -38,6 +43,7 @@
                             <input type="number" id="goalla" class="form-control" v-model="goal" placeholder="เป้าหมายที่ต้องการ">
                         </div>
                     </div>
+                    <!-- เงื่อนไขการแสดงผลข้อมูลที่คำนวณแล้ว -->
                     <div v-if="this.goal == 0">
                         <h2 class="text-center mt-3 mb-2">
                         กรอกราคา เพื่อคำนวณ !
@@ -60,6 +66,8 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- สร้างปุ่ม ส่ง ล้างรายการ และ ออกจากระบบ -->
             <div class="row mt-5 mb-5">
                 <div class="col col-sm-12 col-md-12 text-center">
                     <button type="submit" class="btn btn-success btn-lg">ส่ง</button>
@@ -67,6 +75,8 @@
                     <button type="button" class="btn btn-danger btn-lg" @click="$router.push({name: 'SavingCalculatorLogin'})">ออกจากระบบ</button>
                 </div>
             </div>
+
+            <!-- แสดงรายการข้อมูลที่ผ่านการคำนวณ -->
             <div class="row bg-dark text-center mt-5">
                 <div class="col-3 col-sm-3">
                     <label for="dato">รายได้รวม</label>
@@ -81,6 +91,8 @@
                     <label for="dato">เงินเก็บเฉลี่ยต่อวัน</label>
                 </div>
             </div>
+
+            <!-- เงื่อนไขถ้าไม่มีข้อมูลให้ขึ้นว่าไม่มีรายการให้แสดง -->
             <div v-if="this.transactionList.length">
                 <div class="row bg-light text-center pt-2 pb-2 mb-5">
                     <div class="col-3 col-sm-3">
@@ -102,7 +114,8 @@
                     ไม่มีรายการให้แสดง
                 </div>
             </div>
-
+            
+            <!-- แสดงตารางข้อมูลดิบ -->
             <div class="row bg-dark text-center">
                 <div class="col-3 col-md-3 col-sm-3">
                     <label for="dato">วันที่ </label>
@@ -120,6 +133,8 @@
                     <label for="dato">ลบ</label>
                 </div>
             </div>
+
+            <!-- ถ้าไม่มีให้ขึ้นว่า ไม่มีรายการให้แสดง -->
             <div v-if="this.transactionList.length">
                 <div v-for="row in transactionList">
                     <div class="row pb-2 pt-2 border-bottom border-dark bg-light" style="text-align:center">
@@ -146,9 +161,11 @@ import {firestore} from 'firebase'
 
 export default {
     mounted () {
+        // เปิดหน้าเว็ปมาเรียกใช้ให้ getdata()
         this.getData ()
     },
     data () {
+        // กำหนดตัวแปรต่างๆ
         return {
             form: {
                 date: '',
@@ -164,6 +181,7 @@ export default {
         }
     },
     methods: {
+        // method การส่งข้อมูลขึ้น firestore
         sendForm () {
             var timestamp = this.getTimeStamp()
             this.form.income = parseInt(this.form.income)
@@ -175,6 +193,7 @@ export default {
                 this.getData()
             })
         },
+        // method การดึงข้อมูลจาก firestore
         getData () {
             firestore()
             .collection('transactions')
@@ -197,12 +216,14 @@ export default {
                 this.transactionList = newList
             })
         },
+        // method ลบแถวแต่ละแถว
         removeRow(e) {
             firestore()
             .collection('transactions')
             .doc(e)
             .delete()
         },
+        // method ล้างข้อมูลทุกแถว
         removeAllRows() {
             firestore()
             .collection('transactions')
@@ -214,11 +235,13 @@ export default {
                 });
             })
         },
+        // รับค่าเวลา
         getTimeStamp () {
             return  new Date().getTime()
         }
     },
     computed: {
+        // การคำนวณเงินเก็บเฉลี่ยต่อวัน
         balanceAvg () {
             if (this.transactionList.length == 0){
                 return 0
@@ -227,6 +250,7 @@ export default {
                 return this.totalBalance / this.transactionList.length
             }
         },
+        // การคำนวณว่าเหลืออีกกี่วันจึงจะซื้อของได้
         daysLeft () {
             if (this.goal > this.totalBalance) {
                 return parseInt((this.goal - this.totalBalance) / this.balanceAvg)+1
